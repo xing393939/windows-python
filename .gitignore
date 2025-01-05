@@ -1,0 +1,8 @@
+/.idea
+/data/html_cache
+/data/tpl_cache
+/data/db_cache
+*.json
+*.summary
+.env
+.gradio

@@ -1,0 +1,22 @@
+name: deploy
+
+on:
+  push:
+    branches: [master]
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create Executable
+        uses: sayyid5416/pyinstaller@v1
+        with:
+          python_ver: '3.6'
+          spec: 'starter.py'
+          requirements: 'requirements.txt'
+          exe_path: ./
+          options: --onefile
+
