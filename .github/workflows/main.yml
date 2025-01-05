@@ -11,12 +11,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Create Executable
-        uses: sayyid5416/pyinstaller@v1
+      # Step 3: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python_ver: '3.6'
-          spec: 'starter.py'
-          requirements: 'requirements.txt'
-          exe_path: ./
-          options: --onefile
+          python-version: '3.6'
+
+      # Step 4: Install dependencies
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 5: Install PyInstaller and create the executable
+      - name: Build Executable with PyInstaller
+        run: |
+          pip install pyinstaller
+          pyinstaller --onefile starter.py
 
