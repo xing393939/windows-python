@@ -29,3 +29,9 @@ jobs:
           pip install pyinstaller
           pyinstaller --onefile starter.py
 
+      # Step 7: Upload the executable as an artifact (optional, if needed)
+      - name: Upload executable as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-executable
+          path: ./dist/starter.exe
