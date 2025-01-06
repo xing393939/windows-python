@@ -26,7 +26,7 @@ jobs:
       # Step 5: Install PyInstaller and create the executable
       - name: Build Executable with PyInstaller
         run: |
-          pyinstaller --onefile --hidden-import pandas --hidden-import xlrd starter.py
+          pyinstaller --onefile --hidden-import pandas --hidden-import xlrd --hidden-import openpyxl --hidden-import pyecharts starter.py
 
       # Step 7: Upload the executable as an artifact (optional, if needed)
       - name: Upload executable as artifact
