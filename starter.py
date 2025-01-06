@@ -1,6 +1,14 @@
 import os
 import importlib.util
 
+def get_executable_dir():
+    # 获取当前可执行文件所在的目录
+    if getattr(sys, 'frozen', False):  # 检查是否为打包后的可执行文件
+        executable_dir = os.path.dirname(sys.executable)
+    else:
+        executable_dir = os.path.dirname(os.path.abspath(__file__))
+    return executable_dir
+
 def replace_main_with_index(input_file, output_file):
     with open(input_file, 'r', encoding='utf-8') as file:
         data = file.read()
@@ -11,7 +19,7 @@ def replace_main_with_index(input_file, output_file):
 
 def load_and_run_main_py():
     script_name = 'index.py'
-    script_path = os.path.join(os.path.dirname(__file__), script_name)
+    script_path = os.path.join(get_executable_dir(), script_name)
     if os.path.exists(script_path):
         replace_main_with_index(script_path, script_path)
         spec = importlib.util.spec_from_file_location("index", script_path)
