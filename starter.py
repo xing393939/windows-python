@@ -2,13 +2,15 @@ import os
 import sys
 import importlib.util
 
+
 def get_executable_dir():
-    # 获取当前可执行文件所在的目录
-    if getattr(sys, 'frozen', False):  # 检查是否为打包后的可执行文件
+    # 检查是否为打包后的可执行文件
+    if getattr(sys, 'frozen', False):
         executable_dir = os.path.dirname(sys.executable)
     else:
         executable_dir = os.path.dirname(os.path.abspath(__file__))
     return executable_dir
+
 
 def replace_main_with_index(input_file, output_file):
     with open(input_file, 'r', encoding='utf-8') as file:
@@ -17,6 +19,7 @@ def replace_main_with_index(input_file, output_file):
     # 将替换后的内容写入输出文件
     with open(output_file, 'w', encoding='utf-8') as file:
         file.write(new_data)
+
 
 def load_and_run_main_py():
     script_name = 'index.py'
@@ -28,6 +31,7 @@ def load_and_run_main_py():
         spec.loader.exec_module(index_module)
     else:
         print(f"未找到 {script_path}，请确保它位于与此可执行文件相同的目录中。")
+
 
 if __name__ == '__main__':
     load_and_run_main_py()
