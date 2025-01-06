@@ -13,7 +13,12 @@ def get_executable_dir():
 
 
 def replace_main_with_index(input_file, output_file):
-    with open(input_file, 'r', encoding='utf-8') as file:
+    # 读取文件，检查文件的编码
+    with open(input_file, 'rb') as f:
+        raw_data = f.read()
+        result = chardet.detect(raw_data)
+        encoding = result['encoding']
+    with open(input_file, 'r', encoding=encoding.lower()) as file:
         data = file.read()
     new_data = data.replace("__name__ == '__main__'", "__name__ == 'index'")
     # 将替换后的内容写入输出文件
