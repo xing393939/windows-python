@@ -26,6 +26,8 @@ jobs:
       # Step 5: Install PyInstaller and create the executable
       - name: Build Executable with PyInstaller
         run: |
+          $userSite = python -m site --user-site
+          dir $userSite
           pyinstaller --onefile --hidden-import pandas --hidden-import xlrd --hidden-import openpyxl --hidden-import pyecharts starter.py
 
       # Step 7: Upload the executable as an artifact (optional, if needed)
