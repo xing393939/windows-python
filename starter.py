@@ -1,4 +1,5 @@
 import os
+import sys
 import importlib.util
 
 def get_executable_dir():
