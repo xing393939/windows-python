@@ -29,7 +29,7 @@ jobs:
           $userSite = "c:\hostedtoolcache\windows\python\3.6.8\x64\lib\site-packages"
           echo "from PyInstaller.utils.hooks import collect_data_files" > $userSite\PyInstaller\hooks\hook-pyecharts.py
           echo "datas = collect_data_files('pyecharts')" >> $userSite\PyInstaller\hooks\hook-pyecharts.py
-          pyinstaller -w --onefile --hidden-import pandas --hidden-import xlrd --hidden-import openpyxl --hidden-import pyecharts --hidden-import matplotlib starter.py
+          pyinstaller -w --onefile --hidden-import pandas --hidden-import xlrd --hidden-import openpyxl --hidden-import pyecharts --hidden-import matplotlib --hidden-import chardet starter.py
 
       # Step 7: Upload the executable as an artifact (optional, if needed)
       - name: Upload executable as artifact
