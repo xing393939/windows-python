@@ -1,5 +1,6 @@
 import os
 import sys
+import chardet
 import importlib.util
 
 
