@@ -41,4 +41,4 @@ def load_and_run_main_py():
 
 if __name__ == '__main__':
     load_and_run_main_py()
-    input("请按任意键继续...")
+    input("请按回车键退出...")
