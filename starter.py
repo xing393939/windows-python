@@ -1,5 +1,6 @@
 import os
 import sys
+import traceback
 import chardet
 import importlib.util
 
@@ -40,5 +41,9 @@ def load_and_run_main_py():
 
 
 if __name__ == '__main__':
-    load_and_run_main_py()
+    try:
+        load_and_run_main_py()
+    except Exception as e:
+        print(e)
+        traceback.print_exc()
     input("请按回车键退出...")
