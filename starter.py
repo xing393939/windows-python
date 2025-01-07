@@ -44,6 +44,5 @@ if __name__ == '__main__':
     try:
         load_and_run_main_py()
     except Exception as e:
-        print(e)
         traceback.print_exc()
     input("请按回车键退出...")
