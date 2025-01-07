@@ -15,6 +15,7 @@ def get_executable_dir():
 
 
 def replace_main_with_index(input_file, output_file):
+    input_file = input_file.replace("python_code.py", "python_code.txt")
     # 读取文件，检查文件的编码
     with open(input_file, 'rb') as f:
         raw_data = f.read()
@@ -22,14 +23,14 @@ def replace_main_with_index(input_file, output_file):
         encoding = result['encoding']
     with open(input_file, 'r', encoding=encoding.lower()) as file:
         data = file.read()
-    new_data = data.replace("__name__ == '__main__'", "__name__ == 'index'")
+    new_data = data.replace("__name__ == '__main__'", "__name__ == 'python_code'")
     # 将替换后的内容写入输出文件
     with open(output_file, 'w', encoding='utf-8') as file:
         file.write(new_data)
 
 
 def load_and_run_main_py():
-    script_name = 'index.py'
+    script_name = 'python_code.py'
     script_path = os.path.join(get_executable_dir(), script_name)
     if os.path.exists(script_path):
         replace_main_with_index(script_path, script_path)
