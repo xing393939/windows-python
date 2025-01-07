@@ -15,7 +15,6 @@ def get_executable_dir():
 
 
 def replace_main_with_index(input_file, output_file):
-    input_file = input_file.replace("python_code.py", "python_code.txt")
     # 读取文件，检查文件的编码
     with open(input_file, 'rb') as f:
         raw_data = f.read()
@@ -30,15 +29,15 @@ def replace_main_with_index(input_file, output_file):
 
 
 def load_and_run_main_py():
-    script_name = 'python_code.py'
+    script_name = 'python_code'
     script_path = os.path.join(get_executable_dir(), script_name)
-    if os.path.exists(script_path):
-        replace_main_with_index(script_path, script_path)
+    if os.path.exists(script_path + ".txt"):
+        replace_main_with_index(script_path + ".txt", script_path + ".py")
         spec = importlib.util.spec_from_file_location("index", script_path)
         index_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(index_module)
     else:
-        print(f"未找到 {script_path}，请确保它位于与此可执行文件相同的目录中。")
+        print(f"未找到 {script_path}.txt，请确保它位于与此可执行文件相同的目录中。")
 
 
 if __name__ == '__main__':
