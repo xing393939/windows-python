@@ -1,4 +1,4 @@
-name: deploy
+name: deploy-linux
 
 on:
   push:
@@ -23,7 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           mkdir python
           pip install -r requirements_aws.txt -t python
-          pip install . -t  python
           zip --quiet -r python.zip python
 
       # Step 7: Upload the executable as an artifact (optional, if needed)
