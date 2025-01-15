@@ -26,10 +26,11 @@ jobs:
           mkdir python
           pip install -r requirements_aws.txt -t python
           find python -type d -name "__pycache__" -exec rm -r {} +
+          zip --quiet -r python.zip python
 
       # Step 7: Upload the executable as an artifact (optional, if needed)
       - name: Upload executable as artifact
         uses: actions/upload-artifact@v3
         with:
           name: my-python
-          path: python
+          path: ./python.zip
